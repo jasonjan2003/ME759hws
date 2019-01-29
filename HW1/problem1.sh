@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -p queue_name
+#SBATCH -p slurm_shortgpu
 #SBATCH --job-name=HW1-1
 #SBATCH -N 1 -n 1 --gres=gpu:1	# 1 node
 #SBATCH -o job_out
