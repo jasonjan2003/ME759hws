@@ -1,0 +1,6 @@
+8
+0x7fffffffd648
+0x7fffffffd647
+10
+266
+Since sizeof(char)=1byte, by casting p to (char*)p and adding 1, in line 18, an assignment of c=1 was made to the second byte of arr[0], an int of 4 bytes. This effectively adds 1*2^8=256 to 10.
