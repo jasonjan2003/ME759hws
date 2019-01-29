@@ -8,5 +8,5 @@
 cd $SLURM_SUBMIT_DIR
 ./problem2 "Hello"
 
-mv job_out problem1.o$SLURM_JOB_ID
-mv job_err problem1.e$SLURM_JOB_ID
+mv job_out problem2.o$SLURM_JOB_ID
+mv job_err problem2.e$SLURM_JOB_ID
