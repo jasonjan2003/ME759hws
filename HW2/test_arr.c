@@ -10,7 +10,7 @@ int main(void){
 	printf("%d\n", i);
 
 	int arr[i];
-	for (int a = 0; a<i; ++i)
+	for (int a = 0; a<i; a++)
 	{
 		arr[a]=a;
 		printf("%d\n", arr[a]);
