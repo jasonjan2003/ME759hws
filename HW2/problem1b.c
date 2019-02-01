@@ -46,7 +46,7 @@ int main(void){
 		return(-1);
 	}
 	for (int i = 0; i<size; i++)		// print in file
-		fprintf(fp, "%d\n", arr[i]);		// line after line
+		fprintf(fp, "%d\n", arr[i]);	// line after line
 	return 0;
 }
 int cmpfunc(const void* p1, const void* p2){
