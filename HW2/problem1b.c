@@ -38,7 +38,7 @@ int main(void){
 	qsort(arr, size, sizeof(int), cmpfunc);
 	clock_t end = clock();		// end time
 	// print time in [ms]
-	printf("%.10f",(double)(end-begin)/CLOCKS_PER_SEC*1000.0);
+	printf("%.10f\n",(double)(end-begin)/CLOCKS_PER_SEC*1000.0);
 
 	fp = fopen("./problem1.out", "w");	// create/replace output file
 	if( fp == NULL ){					// check for fopen errors
