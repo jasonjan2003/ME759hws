@@ -3,7 +3,7 @@
 #include <time.h>
 
 int bubbleSort(int arr[], int* count);
-int swap(int arr[], int first);
+void swap(int arr[], int first);
 int size;						// list size
 
 int main(void){
@@ -66,7 +66,7 @@ int bubbleSort(int arr[], int* count){
 	return isComplete;
 }
 
-int swap(int arr[], int first){
+void swap(int arr[], int first){
 	int temp = arr[first];
 	arr[first] = arr[first+1];
 	arr[first+1] = temp;
