@@ -20,10 +20,14 @@ int main(void){
 	int arr[i];					// declare int array with that many elements
 
 	// read in rest of list
+	int val;
 	for (int a = 0; a<i; a++)
 	{
-		fscanf(fp, "%d\n", arr[a]);
-		printf("%d\n", arr[a]);
+		if( fscanf(fp, "%d\n", &val) != EOF ){
+			arr[a] = val;
+			printf("%d\n", arr[a]);
+		}
+		
 	}
 	fclose(fp);
 
