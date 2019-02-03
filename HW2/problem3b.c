@@ -33,7 +33,7 @@ int main(void)
 	}
 	//scan every value in line
 	int skip = 0;
-	while( sscanf(line,"%d", &currValue)){
+	while( sscanf(line+skip,"%d", &currValue)){
 		
 		// if img is full
 		if( imgCount == squareDim(img_dim)){
