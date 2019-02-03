@@ -27,7 +27,10 @@ int main(int argc, char const *argv[])
 
 	// Retrieve image size
 	size = atoi(argv[1]);
+
 	randNumGen();
+
+	// Features are on the second line
 	fprintf(fp, "\n ");
 
 	// Retrieve feature size
@@ -44,7 +47,8 @@ signed short randNum(void){
 	return (rand() & 1) ? 1 : -1;
 }
 void randNumGen(void){
+	// square image
+	size = size * size;
 	for (int i = 0; i < size; i++)
 		fprintf(fp, "%d ", randNum());
-
 }
