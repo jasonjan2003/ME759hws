@@ -5,3 +5,4 @@
 #add_executable(problem2 problem2.c)
 #add_executable(problem3a problem3a.c)
 add_executable(problem3b problem3b.c)
+target_link_libraries(problem3b m)
