@@ -17,8 +17,8 @@ int main(void)
 
 	// read first line
 	//char temp[32];							// temp line array
-	char *line = NULL;							// file line array
-	size_t lineLength = 0;						// length of line
+	size_t lineLength = 4;						// length of line
+	char *line = malloc(lineLength);			// file line array
 	if(getline(&line, &lineLength, fp) == 0){	// get first line
 		perror("getline");
 		exit(EXIT_FAILURE);
