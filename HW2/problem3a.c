@@ -30,6 +30,7 @@ int main(int argc, char const *argv[])
 		fprintf(fp, "%d\n", randNum());
 	}
 
+	return 0;
 
 }
 signed short randNum(void){
