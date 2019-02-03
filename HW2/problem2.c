@@ -32,7 +32,7 @@ int main(void){
 	}
 	fclose(fp);					// close file
 	clock_t begin = clock();	// start time
-	exclusiveScanAdd(arr,val);	// Exclusive scan add
+	exclusiveScanAdd(arr,out);	// Exclusive scan add
 	clock_t end = clock();		// end time
 	// print time in [ms]
 	printf("%f\n",(double)(end-begin)/CLOCKS_PER_SEC*1000.0);
