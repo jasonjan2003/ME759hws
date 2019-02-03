@@ -10,7 +10,10 @@ for i in {10..19}
 do
 	printf "2^%i:\n";
 	./test_file_gen1 $i;
-	./problem1;
+	printf "1a:\n"
+	./problem1a;
+	printf "1b:\n"
+	./problem1b;
 	printf "\n";
 done
 
