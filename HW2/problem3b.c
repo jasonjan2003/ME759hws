@@ -16,7 +16,8 @@ int main(void)
 	// open data file
 	//fp = fopen("./problem3.dat","r");
 
-
-
+	free(img);
+	free(feat);
+	img = feat = NULL;
 	return 0;
 }
