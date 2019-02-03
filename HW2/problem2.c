@@ -10,7 +10,7 @@ int main(void){
 	FILE *fp;					// the file
 
 	// open the file
-	fp = fopen("./problem1.in","r");
+	fp = fopen("./problem2.in","r");
 
 	// Check if file opened okay
 	if( fp == NULL ){
