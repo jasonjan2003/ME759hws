@@ -10,7 +10,7 @@ int main(void)
 	signed short *feat = (signed short*) malloc(sizeof(signed short) * MAX_FEATURE_SIZE);
 	if( !img || !feat ){
 		perror("Malloc failed");
-		error(1);
+		return(1);
 	}
 
 	// open data file
