@@ -18,5 +18,5 @@ project(ME759)
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall") 
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -Wall") 
 # Add homework subdirectories
-add_subdirectory(HW1)
+#add_subdirectory(HW1)
 add_subdirectory(HW2)
