@@ -14,7 +14,7 @@ int main(int argc, char **argv){
 	time_t t;
 	FILE *fp;
 
-	fp = fopen("./problem1.in", "w");
+	fp = fopen("./problem2.in", "w");
 	fprintf(fp, "%d\n", limit);
 
 	// Init rand
