@@ -81,5 +81,6 @@ int charArrayToValue(char **line, signed short *arr, size_t *dim){
 		arr[arrCount++] = currValue;
 		skip = skip + (currValue ==1 ? 2 : 3);
 	}
+	return arrCount;
 
 }
