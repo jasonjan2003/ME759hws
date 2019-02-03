@@ -5,10 +5,12 @@
 
 
 signed short randNum(void);
+void randNumGen(void);
+FILE *fp;	// the file
+int size;
 int main(int argc, char const *argv[])
 {
 	
-	FILE *fp;							// the file
 	time_t t;
 
 	// open the file
@@ -24,11 +26,16 @@ int main(int argc, char const *argv[])
 	srand((unsigned) time(&t));
 
 	// Retrieve image size
-	int size = atoi(argv[1]);
-	for (int i = 0; i < size; i++)
-	{
-		fprintf(fp, "%d ", randNum());
-	}
+	size = atoi(argv[1]);
+	randNumGen();
+	fprintf(fp, "\n ");
+
+	// Retrieve feature size
+	size = atoi(argv[2]);
+	randNumGen();
+
+	// Close file
+	fclose(fp);
 
 	return 0;
 
@@ -36,4 +43,8 @@ int main(int argc, char const *argv[])
 signed short randNum(void){
 	return (rand() & 1) ? 1 : -1;
 }
+void randNumGen(void){
+	for (int i = 0; i < size; i++)
+		fprintf(fp, "%d ", randNum());
 
+}
