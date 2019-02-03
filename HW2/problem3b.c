@@ -6,7 +6,7 @@ FILE *fp;
 size_t img_dim=5;				// guess dimension of image
 size_t fet_dim=9;				// guess dimension of feature
 size_t squareDim(size_t dim);	// prototype square function
-
+int charArrayToValue(char **line, signed short *arr, size_t *dim)
 
 int main(void)
 {
@@ -24,34 +24,29 @@ int main(void)
 	}
 	img_dim = (size_t) sqrt(lineLength / 2);	// estimate of img dimension
 
-	int currValue = 0;		// current value holder
-	int imgCount = 0;		// count values already read
+
 	signed short *img = (signed short*) malloc(sizeof(signed short) * squareDim(img_dim));
 	if( !img ){
 		perror("Malloc failed");
 		exit(EXIT_FAILURE);
 	}
 	//scan every value in line
-	int skip = 0;
-	while( sscanf(line+skip,"%d", &currValue)){
-		
-		// if img is full
-		if( imgCount == squareDim(img_dim)){
+	int imgCount = charArrayToValue(*line, *img, *img_dim);
 
-			// create temporary realloc pointer
-			signed short *img_temp = realloc(img, squareDim(img_dim+1));
-			if( img_temp == NULL ){
-				perror("realloc line 1");
-				exit(EXIT_FAILURE);
-			}
-			img = img_temp;	// replace img with the larger img_temp
-		}
-		img[imgCount++] = currValue;
-		skip = skip + (currValue ==1 ? 2 : 3);
-	}
 	
+	// read 2nd line
+	lineLength = 0;							// length of line
+	*line = NULL;							// file line array
+	if(getline(&line, &lineLength, fp) == 0){	// get first line
+		perror("getline");
+		exit(EXIT_FAILURE);
+	}
+
 	signed short *fet = (signed short*) malloc(sizeof(signed short) * squareDim(fet_dim));
 	
+	//scan every value in line
+	int fetCount = charArrayToValue(*line, *fet, *fet_dim);
+
 	free(line);
 	free(img);
 	free(fet);
@@ -62,4 +57,29 @@ int main(void)
 
 size_t squareDim(size_t dim){
 	return (size_t) pow(dim,2);
+}
+
+int charArrayToValue(char **line, signed short *arr, size_t *dim){
+
+	int currValue = 0;		// current value holder
+	int arrCount = 0;		// count values already read
+	int skip = 0;			// chars to skip
+	while( sscanf(&line+skip,"%d", &currValue)){
+		
+		// if arr is full
+		if( arrCount == squareDim(&dim)){
+
+			// create temporary realloc pointer
+			&dim=&dim + 1;	// increment dimension
+			signed short *arr_temp = realloc(arr, squareDim(&dim));
+			if( arr_temp == NULL ){
+				perror("realloc line 1");
+				exit(EXIT_FAILURE);
+			}
+			arr = arr_temp;	// replace img with the larger img_temp
+		}
+		arr[arrCount++] = currValue;
+		skip = skip + (currValue ==1 ? 2 : 3);
+	}
+
 }
