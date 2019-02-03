@@ -27,7 +27,7 @@ int main(int argc, char const *argv[])
 	int size = atoi(argv[1]);
 	for (int i = 0; i < size; i++)
 	{
-		fprintf(fp, "%d\n", randNum());
+		fprintf(fp, "%d ", randNum());
 	}
 
 	return 0;
