@@ -28,7 +28,7 @@ int main(void)
 	int currValue = 0;		// current value holder
 	int imgCount = 0;		// count values already read
 	signed short *img = (signed short*) malloc(sizeof(signed short) * squareDim(img_dim));
-	if( !img || !feat ){
+	if( !img ){
 		perror("Malloc failed");
 		exit(EXIT_FAILURE);
 	}
