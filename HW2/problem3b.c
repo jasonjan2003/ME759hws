@@ -36,10 +36,10 @@ int main(void)
 	while( sscanf(line,"%d", &currValue)){
 		
 		// if img is full
-		if( imgCount == squareDime(img_dim)){
+		if( imgCount == squareDim(img_dim)){
 
 			// create temporary realloc pointer
-			signed short *img_temp = realloc(img, squareDime(img_dim+1));
+			signed short *img_temp = realloc(img, squareDim(img_dim+1));
 			if( img_temp == NULL ){
 				perror("realloc line 1");
 				exit(EXIT_FAILURE);
@@ -64,7 +64,7 @@ int main(void)
 
 
 	
-	signed short *fet = (signed short*) malloc(sizeof(signed short) * pow(fet_dim));
+	signed short *fet = (signed short*) malloc(sizeof(signed short) * squareDim(fet_dim));
 	
 	free(line);
 	free(img);
