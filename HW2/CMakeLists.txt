@@ -1,4 +1,5 @@
-add_executable(test_file_gen test_file_gen.c)
+add_executable(test_file_gen1 test_file_gen1.c)
+add_executable(test_file_gen2 test_file_gen2.c)
 #add_executable(problem1a problem1a.c)
 #add_executable(problem1b problem1b.c)
 add_executable(problem2 problem2.c)
