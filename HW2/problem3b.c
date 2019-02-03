@@ -16,9 +16,8 @@ int main(void)
 	fp = fopen("./problem3.dat","r");
 
 	// read first line
-	//char temp[32];							// temp line array
-	size_t lineLength = 4;						// length of line
-	char *line = malloc(lineLength);			// file line array
+	size_t lineLength = 0;						// length of line
+	char *line = NULL;							// file line array
 	if(getline(&line, &lineLength, fp) == 0){	// get first line
 		perror("getline");
 		exit(EXIT_FAILURE);
@@ -33,6 +32,7 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 	//scan every value in line
+	int skip = 0;
 	while( sscanf(line,"%d", &currValue)){
 		
 		// if img is full
@@ -47,22 +47,8 @@ int main(void)
 			img = img_temp;	// replace img with the larger img_temp
 		}
 		img[imgCount++] = currValue;
+		skip = skip + (currValue ==1 ? 2 : 3);
 	}
-
-	//while(fgets(temp, sizeof(temp), fp)){
-	//	
-	//	size_t tempLength = strlen(temp);							// length of string in temp
-	//	char *tempLine = realloc(line, lineLength+tempLength+1);	// create size to fit string in temp
-	//	if( tempLine == NULL){
-	//		perror("failed reading line");
-	//		return 1;
-	//	}
-	//	line = tempLine;											// use new size for line
-	//	strcpy(line+lineLength, temp);								// concatenate
-	//}
-
-
-
 	
 	signed short *fet = (signed short*) malloc(sizeof(signed short) * squareDim(fet_dim));
 	
