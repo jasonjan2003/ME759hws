@@ -67,7 +67,7 @@ int charArrayToValue(char *line, signed short *arr, size_t *dim){
 	int currValue = 0;		// current value holder
 	int arrCount = 0;		// count values already read
 	int skip = 0;			// chars to skip
-	while( sscanf(line+skip,"%d", &currValue) >> 0){
+	while( sscanf(line+skip,"%d", &currValue) > 0){
 		
 		// if arr is full
 		if( arrCount == squareDim((size_t)*dim)){
