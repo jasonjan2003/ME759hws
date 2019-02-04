@@ -11,6 +11,10 @@ int charArrayToValue(char *line, signed short *arr, size_t *dim);
 int main(void)
 {
 	
+	int imgCount, fetCount;
+	signed short *img = NULL;
+	signed short *fet = NULL;
+	signed short *out = NULL;
 
 	// open data file
 	fp = fopen("./problem3.dat","r");
@@ -24,14 +28,13 @@ int main(void)
 	}
 	img_dim = (size_t) sqrt(lineLength / 2);	// estimate of img dimension
 
-
-	signed short *img = (signed short*) malloc(sizeof(signed short) * squareDim(img_dim));
+	*img = (signed short*) malloc(sizeof(signed short) * squareDim(img_dim));
 	if( !img ){
 		perror("Malloc failed");
 		exit(EXIT_FAILURE);
 	}
 	//scan every value in line
-	int imgCount = charArrayToValue(line, img, &img_dim);
+	imgCount = charArrayToValue(line, img, &img_dim);
 	// -----------
 	//
 	
@@ -43,15 +46,21 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 
-	signed short *fet = (signed short*) malloc(sizeof(signed short) * squareDim(fet_dim));
+	*fet = (signed short*) malloc(sizeof(signed short) * squareDim(fet_dim));
 	
 	//scan every value in line
-	int fetCount = charArrayToValue(line, fet, &fet_dim);
+	fetCount = charArrayToValue(line, fet, &fet_dim);
 	// ----------
 	//
 
-	fclose(fp);
+	// Don't need the char line anymore
 	free(line);
+
+	// Calculate 
+	
+
+	fclose(fp);
+	
 	free(img);
 	free(fet);	
 
@@ -84,5 +93,14 @@ int charArrayToValue(char *line, signed short *arr, size_t *dim){
 		arr[arrCount++] = currValue;
 		skip = skip + (currValue ==1 ? 2 : 3);
 	}
-	return arrCount;
+
+	// Realloc to proper size
+	signed short *arr_temp = realloc(arr, (size_t)arrCount);
+	if( arr_temp == NULL ){
+		perror("realloc line 1");
+		exit(EXIT_FAILURE);
+	}
+	arr = arr_temp;
+	*dim=sqrt(arrCount);
+	return sqrt(arrCount);
 }
