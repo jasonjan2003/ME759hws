@@ -62,7 +62,7 @@ int main(void)
 	int out[squareDim(out_dim)];
 
 	// Start matching
-	for (int i = 0; i < out_dim; i++){
+	for (int i = 0; i < squareDim(out_dim); i++){
 		int topLeftIndex = i/(int)out_dim*img_dim + i%(int)out_dim;
 		int sum = 0;
 		for (int fetIndex = 0; fetIndex < fetCount; fetIndex++)
