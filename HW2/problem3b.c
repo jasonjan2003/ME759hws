@@ -59,7 +59,7 @@ int main(void)
 
 	// Calculate and set output array size
 	out_dim = img_dim-fet_dim+1;
-	int out[squareDim(out_dim)]={0};
+	int out[squareDim(out_dim)];
 
 	// Start matching
 	for (int i = 0; i < squareDim(out_dim); i++){
