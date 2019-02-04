@@ -117,5 +117,5 @@ int charArrayToValue(char *line, signed short *arr, size_t *dim){
 	}
 	arr = arr_temp;
 	*dim=sqrt(arrCount);
-	return sqrt(arrCount);
+	return arrCount;
 }
