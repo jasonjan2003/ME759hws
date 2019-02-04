@@ -5,6 +5,7 @@
 FILE *fp;
 size_t img_dim=5;				// guess dimension of image
 size_t fet_dim=9;				// guess dimension of feature
+size_t out_dim;
 size_t squareDim(size_t dim);	// prototype square function
 int charArrayToValue(char *line, signed short *arr, size_t *dim);
 
@@ -14,7 +15,7 @@ int main(void)
 	int imgCount, fetCount;
 	signed short *img = NULL;
 	signed short *fet = NULL;
-	signed short *out = NULL;
+	int *out = NULL;
 
 	// open data file
 	fp = fopen("./problem3.dat","r");
@@ -28,7 +29,7 @@ int main(void)
 	}
 	img_dim = (size_t) sqrt(lineLength / 2);	// estimate of img dimension
 
-	img = (signed short*) malloc(sizeof(signed short) * squareDim(img_dim));
+	img = malloc(sizeof(signed short) * squareDim(img_dim));
 	if( !img ){
 		perror("Malloc failed");
 		exit(EXIT_FAILURE);
@@ -46,23 +47,37 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 
-	fet = (signed short*) malloc(sizeof(signed short) * squareDim(fet_dim));
+	fet = malloc(sizeof(signed short) * squareDim(fet_dim));
 	
 	//scan every value in line
 	fetCount = charArrayToValue(line, fet, &fet_dim);
 	// ----------
 	//
 
-	// Don't need the char line anymore
+	// Don't need the char line or file anymore
 	free(line);
-
-	// Calculate 
-
-
 	fclose(fp);
+
+	// Calculate and set output array size
+	out_dim = img_dim-fet_dim+1;
+	out = malloc(sizeof(int) * squareDim(out_dim));
+
+	// Start matching
+	for (int i = 0; i < out_dim; i++){
+		int topLeftIndex = i/out_dim*img_dim + i%out_dim;
+		int sum = 0;
+		for (int fetIndex = 0; fetIndex < fetCount; fetIndex++)
+		{
+			int imgShift = fetIndex/fet_dim*img_dim + fetIndex%fet_dim;
+			sum += img[topLeftIndex + imgShift] * fet[fetIndext];
+		}
+		out[i] = sum;
+	}
+	
 	
 	free(img);
-	free(fet);	
+	free(fet);
+	free(out);
 
 	return 0;
 }
@@ -91,7 +106,7 @@ int charArrayToValue(char *line, signed short *arr, size_t *dim){
 			arr = arr_temp;	// replace img with the larger img_temp
 		}
 		arr[arrCount++] = currValue;
-		skip = skip + (currValue ==1 ? 2 : 3);
+		skip += (currValue ==1 ? 2 : 3);
 	}
 
 	// Realloc to proper size
