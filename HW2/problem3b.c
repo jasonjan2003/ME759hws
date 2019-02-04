@@ -69,7 +69,7 @@ int main(void)
 		for (int fetIndex = 0; fetIndex < fetCount; fetIndex++)
 		{
 			int imgShift = fetIndex/fet_dim*img_dim + fetIndex%fet_dim;
-			sum += img[topLeftIndex + imgShift] * fet[fetIndext];
+			sum += img[topLeftIndex + imgShift] * fet[fetIndex];
 		}
 		out[i] = sum;
 	}
