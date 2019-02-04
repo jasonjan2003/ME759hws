@@ -45,7 +45,7 @@ int main(void)
 	signed short *fet = (signed short*) malloc(sizeof(signed short) * squareDim(fet_dim));
 	
 	//scan every value in line
-	int fetCount = charArrayToValue(*line, *fet, *fet_dim);
+	int fetCount = charArrayToValue(line, fet, &fet_dim);
 
 	free(line);
 	free(img);
