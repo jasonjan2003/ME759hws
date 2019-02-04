@@ -70,7 +70,7 @@ int charArrayToValue(char *line, signed short *arr, size_t *dim){
 	while( sscanf(line+skip,"%d", &currValue)){
 		
 		// if arr is full
-		if( arrCount == squareDim((size_t)&dim)){
+		if( arrCount == squareDim((size_t)*dim)){
 
 			// create temporary realloc pointer
 			*dim=*dim + 1;	// increment dimension
