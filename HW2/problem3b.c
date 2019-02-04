@@ -63,11 +63,13 @@ int main(void)
 
 	// Start matching
 	for (int i = 0; i < squareDim(out_dim); i++){
-		int topLeftIndex = i/(int)out_dim*img_dim + i%(int)out_dim;
+		int topLeftIndex_X = i/out_dim;
+		int topLeftIndex_Y = i%out_dim;
+		int topLeftIndex = topLeftIndex_X*img_dim + topLeftIndex_Y;
 		int sum = 0;
 		for (int fetIndex = 0; fetIndex < fetCount; fetIndex++)
 		{
-			int imgShift = fetIndex/(int)fet_dim*img_dim + fetIndex%(int)fet_dim;
+			int imgShift = fetIndex/fet_dim*img_dim + fetIndex%fet_dim;
 			sum += img[topLeftIndex + imgShift] * fet[fetIndex];
 		}
 		out[i] = sum;
