@@ -5,7 +5,7 @@
 FILE *fp;
 size_t img_dim=5;				// guess dimension of image
 size_t fet_dim=9;				// guess dimension of feature
-size_t out_dim;
+size_t out_dim=1;
 size_t squareDim(size_t dim);	// prototype square function
 int charArrayToValue(char *line, signed short *arr, size_t *dim);
 
@@ -15,7 +15,6 @@ int main(void)
 	int imgCount, fetCount;
 	signed short *img = NULL;
 	signed short *fet = NULL;
-	int *out = NULL;
 
 	// open data file
 	fp = fopen("./problem3.dat","r");
@@ -60,15 +59,15 @@ int main(void)
 
 	// Calculate and set output array size
 	out_dim = img_dim-fet_dim+1;
-	out = malloc(sizeof(int) * squareDim(out_dim));
+	int out[squareDim(out_dim)];
 
 	// Start matching
 	for (int i = 0; i < out_dim; i++){
-		int topLeftIndex = i/out_dim*img_dim + i%out_dim;
+		int topLeftIndex = i/(int)out_dim*img_dim + i%(int)out_dim;
 		int sum = 0;
 		for (int fetIndex = 0; fetIndex < fetCount; fetIndex++)
 		{
-			int imgShift = fetIndex/fet_dim*img_dim + fetIndex%fet_dim;
+			int imgShift = fetIndex/(int)fet_dim*img_dim + fetIndex%(int)fet_dim;
 			sum += img[topLeftIndex + imgShift] * fet[fetIndex];
 		}
 		out[i] = sum;
@@ -77,7 +76,6 @@ int main(void)
 	
 	free(img);
 	free(fet);
-	free(out);
 
 	return 0;
 }
