@@ -59,7 +59,7 @@ int main(void)
 
 	// Calculate and set output array size
 	out_dim = img_dim-fet_dim+1;
-	int out[squareDim(out_dim)];
+	int out[squareDim(out_dim)]={0};
 
 	// Start matching
 	for (int i = 0; i < squareDim(out_dim); i++){
@@ -98,7 +98,7 @@ int charArrayToValue(char *line, signed short *arr, size_t *dim){
 
 			// create temporary realloc pointer
 			*dim=*dim + 1;	// increment dimension
-			signed short *arr_temp = realloc(arr, squareDim((size_t)*dim));
+			signed short *arr_temp = realloc(arr, squareDim((size_t)*dim) * sizeof(signed short));
 			if( arr_temp == NULL ){
 				perror("realloc line 1");
 				exit(EXIT_FAILURE);
@@ -110,7 +110,7 @@ int charArrayToValue(char *line, signed short *arr, size_t *dim){
 	}
 
 	// Realloc to proper size
-	signed short *arr_temp = realloc(arr, (size_t)arrCount);
+	signed short *arr_temp = realloc(arr, (size_t)arrCount * sizeof(signed short));
 	if( arr_temp == NULL ){
 		perror("realloc line 1");
 		exit(EXIT_FAILURE);
