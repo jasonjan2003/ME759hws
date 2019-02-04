@@ -75,7 +75,8 @@ int main(void)
 			sum += img[topLeftIndex + imgShift] * fet[fetIndex];
 		}
 		if(sum > maxSum){
-			maxIndicies = {topLeftIndex_X,topLeftIndex_Y};
+			maxIndicies[0] = topLeftIndex_X
+			maxIndicies[1] = topLeftIndex_Y;
 			maxSum = sum;
 		}
 		out[i] = sum;
