@@ -15,7 +15,7 @@ int main(void)
 	// open data file
 	fp = fopen("./problem3.dat","r");
 
-	// read first line
+	// ------- read first line ------
 	size_t lineLength = 0;						// length of line
 	char *line = NULL;							// file line array
 	if(getline(&line, &lineLength, fp) == 0){	// get first line
@@ -32,9 +32,10 @@ int main(void)
 	}
 	//scan every value in line
 	int imgCount = charArrayToValue(line, img, &img_dim);
-
+	// -----------
+	//
 	
-	// read 2nd line
+	// ------ read 2nd line ------
 	lineLength = 0;							// length of line
 	line = NULL;							// file line array
 	if(getline(&line, &lineLength, fp) == 0){	// get first line
@@ -46,12 +47,14 @@ int main(void)
 	
 	//scan every value in line
 	int fetCount = charArrayToValue(line, fet, &fet_dim);
+	// ----------
+	//
 
+	fclose(fp);
 	free(line);
 	free(img);
-	free(fet);
-	img = fet = NULL;
-	fclose(fp);
+	free(fet);	
+
 	return 0;
 }
 
