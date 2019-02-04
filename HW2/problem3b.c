@@ -28,7 +28,7 @@ int main(void)
 	}
 	img_dim = (size_t) sqrt(lineLength / 2);	// estimate of img dimension
 
-	*img = (signed short*) malloc(sizeof(signed short) * squareDim(img_dim));
+	img = (signed short*) malloc(sizeof(signed short) * squareDim(img_dim));
 	if( !img ){
 		perror("Malloc failed");
 		exit(EXIT_FAILURE);
@@ -46,7 +46,7 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 
-	*fet = (signed short*) malloc(sizeof(signed short) * squareDim(fet_dim));
+	fet = (signed short*) malloc(sizeof(signed short) * squareDim(fet_dim));
 	
 	//scan every value in line
 	fetCount = charArrayToValue(line, fet, &fet_dim);
@@ -57,7 +57,7 @@ int main(void)
 	free(line);
 
 	// Calculate 
-	
+
 
 	fclose(fp);
 	
