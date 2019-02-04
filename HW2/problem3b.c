@@ -6,7 +6,7 @@ FILE *fp;
 size_t img_dim=5;				// guess dimension of image
 size_t fet_dim=9;				// guess dimension of feature
 size_t squareDim(size_t dim);	// prototype square function
-int charArrayToValue(char **line, signed short *arr, size_t *dim);
+int charArrayToValue(char *line, signed short *arr, size_t *dim);
 
 int main(void)
 {
@@ -31,7 +31,7 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 	//scan every value in line
-	int imgCount = charArrayToValue(*line, *img, *img_dim);
+	int imgCount = charArrayToValue(line, img, &img_dim);
 
 	
 	// read 2nd line
@@ -59,19 +59,19 @@ size_t squareDim(size_t dim){
 	return (size_t) pow(dim,2);
 }
 
-int charArrayToValue(char **line, signed short *arr, size_t *dim){
+int charArrayToValue(char *line, signed short *arr, size_t *dim){
 
 	int currValue = 0;		// current value holder
 	int arrCount = 0;		// count values already read
 	int skip = 0;			// chars to skip
-	while( sscanf(&line+skip,"%d", &currValue)){
+	while( sscanf(line+skip,"%d", &currValue)){
 		
 		// if arr is full
-		if( arrCount == squareDim(&dim)){
+		if( arrCount == squareDim((size_t)&dim)){
 
 			// create temporary realloc pointer
 			&dim=&dim + 1;	// increment dimension
-			signed short *arr_temp = realloc(arr, squareDim(&dim));
+			signed short *arr_temp = realloc(arr, squareDim((size_t)*dim));
 			if( arr_temp == NULL ){
 				perror("realloc line 1");
 				exit(EXIT_FAILURE);
