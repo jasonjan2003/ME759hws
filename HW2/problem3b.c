@@ -6,7 +6,7 @@ FILE *fp;
 size_t img_dim=5;				// guess dimension of image
 size_t fet_dim=9;				// guess dimension of feature
 size_t squareDim(size_t dim);	// prototype square function
-int charArrayToValue(char **line, signed short *arr, size_t *dim)
+int charArrayToValue(char **line, signed short *arr, size_t *dim);
 
 int main(void)
 {
@@ -82,5 +82,4 @@ int charArrayToValue(char **line, signed short *arr, size_t *dim){
 		skip = skip + (currValue ==1 ? 2 : 3);
 	}
 	return arrCount;
-
 }
