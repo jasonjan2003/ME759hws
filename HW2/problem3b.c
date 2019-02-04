@@ -36,7 +36,7 @@ int main(void)
 	
 	// read 2nd line
 	lineLength = 0;							// length of line
-	*line = NULL;							// file line array
+	line = NULL;							// file line array
 	if(getline(&line, &lineLength, fp) == 0){	// get first line
 		perror("getline");
 		exit(EXIT_FAILURE);
@@ -70,7 +70,7 @@ int charArrayToValue(char *line, signed short *arr, size_t *dim){
 		if( arrCount == squareDim((size_t)&dim)){
 
 			// create temporary realloc pointer
-			&dim=&dim + 1;	// increment dimension
+			*dim=*dim + 1;	// increment dimension
 			signed short *arr_temp = realloc(arr, squareDim((size_t)*dim));
 			if( arr_temp == NULL ){
 				perror("realloc line 1");
