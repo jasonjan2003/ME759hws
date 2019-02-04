@@ -59,21 +59,29 @@ int main(void)
 
 	// Calculate and set output array size
 	out_dim = img_dim-fet_dim+1;
-	int out[squareDim(out_dim)];
+	float out[squareDim(out_dim)];
 
 	// Start matching
+	int maxIndicies[2] = {0};
+	float maxSum = 0;
 	for (int i = 0; i < squareDim(out_dim); i++){
 		int topLeftIndex_X = i/out_dim;
 		int topLeftIndex_Y = i%out_dim;
 		int topLeftIndex = topLeftIndex_X*img_dim + topLeftIndex_Y;
-		int sum = 0;
+		float sum = 0.0;
 		for (int fetIndex = 0; fetIndex < fetCount; fetIndex++)
 		{
 			int imgShift = fetIndex/fet_dim*img_dim + fetIndex%fet_dim;
 			sum += img[topLeftIndex + imgShift] * fet[fetIndex];
 		}
+		if(sum > maxSum){
+			maxIndicies = {topLeftIndex_X,topLeftIndex_Y};
+			maxSum = sum;
+		}
 		out[i] = sum;
 	}
+
+	printf("%d\n%d\n%f\n", maxIndicies[0], maxIndicies[1], maxSum);
 	
 	
 	free(img);
