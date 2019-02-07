@@ -14,8 +14,11 @@ int main(void){
 
 	// Check if file opened okay
 	if( fp == NULL ){
-		perror("error opening file.");
-		return(-1);
+		fp = fopen("./problem1.in", "r");
+		if ( fp == NULL ){
+			perror("error opening file.");
+			return(-1);
+		}
 	}
 
 	fscanf (fp, "%d", &size);		// first line contains number of numbers in list
