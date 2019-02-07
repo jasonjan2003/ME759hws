@@ -45,10 +45,10 @@ int main(void){
 	// print time in [ms]
 	//printf("%f\n",(double)(end-begin)/CLOCKS_PER_SEC*1000.0);
 
-	// We multiply seconds by 10^6 to convert to us
-    size_t duration_usec = (end.tv_sec - start.tv_sec) * 1000 * 1000;
-    // We divide nanoseconds by 10^3 to convert to us
-    duration_usec += (end.tv_nsec - start.tv_nsec) / 1000;
+	// We multiply seconds by 10^3 to convert to ms
+    size_t duration_usec = (end.tv_sec - start.tv_sec) * 1000;
+    // We divide nanoseconds by 10^6 to convert to ms
+    duration_usec += (end.tv_nsec - start.tv_nsec) / 1000 / 1000;
     printf("%d\n", duration_usec);
 
 	printf("%d\n", out[size-1]);// last element in scanned array
